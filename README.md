@@ -28,10 +28,7 @@ Dependencias: TanStackQuery
 | `POST`     | `/goals/:id/tasks` | Crea una nueva tarea dentro de una meta.                 |
 | `PATCH`    | `/tasks/:taskId`   | Actualiza el estado (completado/pendiente) de una tarea. |
 
-## Próximos pasos
-- [ ] Implementar CRUD completo de metas.
-- [ ] Implementar CRUD completo de tareas
-- [ ] Añadir persistencia de datos (conectar a una base de datos real)
+
 
 ## Instalación
 Instala las dependencias: npm install
@@ -39,3 +36,19 @@ Instala las dependencias: npm install
 Inicia en modo desarrollo: npm run dev
 
 ¡Empieza a rastrear tus metas!
+
+
+## Pruebas
+El proyecto usa Jest y Supertest para los tests de la API.
+
+Ejecuta la suite de tests: npm test
+
+Los tests se localizan en la carpeta `tests/` y cubren los endpoints del controlador de metas (`GET /goals` y `GET /goals/:id`).
+
+
+
+## Próximos pasos
+- [ ] Implementar CRUD completo de metas.
+- [ ] Implementar CRUD completo de tareas
+- [ ] Añadir persistencia de datos (conectar a una base de datos real)
+- [x] Añadir test unitarios al controlador de metas.
