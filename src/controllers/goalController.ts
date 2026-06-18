@@ -42,5 +42,6 @@ export const createGoal = (req: Request, res: Response) => {
     }
     const newGoal = goalRepository.addOne(goal.data);
     return res.status(201).json(newGoal);
+    console.log(`La meta ${1}`)
 }
 
