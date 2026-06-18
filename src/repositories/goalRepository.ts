@@ -10,5 +10,11 @@ export const goalRepository = {
     // Acceder a la lista 
     findOne: (id: string): Goal | undefined => {
         return mockData["goals"].find(goal => goal.id === id)
+    },
+
+    // Añadir un usuario
+    addOne: (goal: Goal) => {
+        return mockData["goals"].push(goal);
+        return goal;
     }
 }
