@@ -14,7 +14,7 @@ export const goalRepository = {
 
     // Añadir un usuario
     addOne: (goal: Goal) => {
-        return mockData["goals"].push(goal);
+        mockData["goals"].push(goal);
         return goal;
     }
 }
