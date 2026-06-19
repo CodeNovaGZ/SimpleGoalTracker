@@ -12,9 +12,10 @@ export const goalRepository = {
         return mockData["goals"].find(goal => goal.id === id)
     },
 
-    // Añadir un usuario
+    // Añadir una meta
     addOne: (goal: Goal) => {
         mockData["goals"].push(goal);
         return goal;
     }
+    // 
 }
