@@ -1,3 +1,5 @@
+import type { Goal } from "../types";
+
 export async function fetchGoals(){
     try {
         const answer = await fetch('/goals')
@@ -11,20 +13,14 @@ export async function fetchGoals(){
     }
 }
 
-export async function createGoal(data: {
-    title: string;
-    description?: string;
-    startDate: string;
-    endDate: string;
-    isCompleted: boolean;
-}){
+export async function createGoal(data: Goal){
     const body = {
         id: crypto.randomUUID(),
         title: data.title,
         description: data.description || '',
         timeline: {
-            startDate: data.startDate,
-            endDate: data.endDate,
+            startDate: data.timeline.startDate,
+            endDate: data.timeline.endDate,
         },
         isCompleted: data.isCompleted,
     }

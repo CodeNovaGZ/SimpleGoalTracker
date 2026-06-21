@@ -6,9 +6,9 @@ export function Logo(){
     )
 }
 
-export function Mas(){
+export function Mas({height, width}: {height: number, width: number}){
     return(
-        <svg width="20" height="20" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width={width} height={height} viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M6 8H0V6H6V0H8V6H14V8H8V14H6V8Z" fill="#003731"/>
         </svg>
 
@@ -28,6 +28,15 @@ export function DesplegableDown(){
     return(
         <svg width="15" height="15" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M6 7.4L0 1.4L1.4 0L6 4.6L10.6 0L12 1.4L6 7.4Z" fill="#BACAC5"/>
+        </svg>
+    )
+}
+
+export function Pencil({height, width}:{height:number, width:number}){
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-pencil-icon lucide-pencil">
+            <path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/>
+            <path d="m15 5 4 4"/>
         </svg>
     )
 }

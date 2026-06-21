@@ -1,5 +1,7 @@
 import {Mas} from '../assets/svgs'
+import { useState } from 'react'
 import GoalCard from '../components/GoalCard'
+import type { Goal } from '../types'
 
 function HomePage(){
     // HomePage.tsx - temporal, solo para visualizar
@@ -20,11 +22,20 @@ function HomePage(){
     }
     ]
 
+    const [goals, setGoals] = useState(mockGoals)
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const handleModal = () =>{
+        setIsModalOpen(true)
+    }
+
+    const handleGoalCreated = (newGoal: Goal) =>{
+        setGoals(prev => [...prev, newGoal])
+    }
     return (
         <div className="flex-1">
             <h1 className="text-[#D4E4FA] text-2xl font-bold mt-7 ml-5">Mis metas</h1>
-            <button className="fixed bottom-6 right-6 w-20 h-20 rounded-full bg-[#57F1DB] text-4xl flex justify-center items-center font-bold"><Mas /></button>
-            <div className='pr-5 pl-5 pt-5'>{mockGoals.map( goal =>(
+            <button onClick={handleModal}className="fixed bottom-6 right-6 w-20 h-20 rounded-full bg-[#57F1DB] text-4xl flex justify-center items-center font-bold"><Mas width= {20} height={20} /></button>
+            <div className='pr-5 pl-5 pt-5'>{goals.map( goal =>(
                 <GoalCard key={goal.id} goal={goal}/>
             )
             )}</div>
