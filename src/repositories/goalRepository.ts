@@ -22,9 +22,17 @@ export const goalRepository = {
 
     // Modificar una meta
     updateOne: (id: string, updates: Partial<Goal>) => {
-        const goalToChange = goals.find(g => g.id === id);
+        const goalToChange = goalRepository.findOne(id);
         if (!goalToChange) return null;
         Object.assign(goalToChange, updates);
         return goalToChange;
+    },
+    // Borrar una meta
+    deleteOne: (id: string) => {
+        const goalToDelete = goalRepository.findOne(id)
+        const goalIndexToDelete = goals.findIndex(goal => goal.id === id);
+        if (!goalToDelete) return null;
+        const deletedGoal = goals.splice(goalIndexToDelete, 1);
+        return deletedGoal;
     }
 }
