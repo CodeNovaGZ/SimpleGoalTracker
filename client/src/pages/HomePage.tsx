@@ -3,13 +3,14 @@ import { useState } from 'react'
 import GoalCard from '../components/GoalCard'
 import GoalModal from '../components/GoalModal'
 import {motion} from 'framer-motion'
-import { useCreateGoal, useGoals } from '../hooks/useGoals'
+import { useCreateGoal, useGoals, useUpdateGoal} from '../hooks/useGoals'
 import GoalDetails from '../components/GoalDetails'
 
 
 function HomePage(){
     // HomePage.tsx - temporal, solo para visualizar
     const createGoalMutation = useCreateGoal()
+    const updateGoalMutation = useUpdateGoal()
     const {data: goals, isLoading, isError} = useGoals()
     
     const [selectedGoal, setSelectedGoal] = useState<string | null>(null)
@@ -35,6 +36,7 @@ function HomePage(){
             {selectedGoal !== null && <GoalDetails
             onClose={()=> setSelectedGoal(null)}
             goal={goals?.find(g => g.id === selectedGoal)}
+            onGoalCreated = {(goal)=> updateGoalMutation.mutate(goal)}
             />}
         </div>
     )

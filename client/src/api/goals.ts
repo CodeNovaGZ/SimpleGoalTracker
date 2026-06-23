@@ -1,4 +1,6 @@
+
 import type { Goal } from "../types";
+
 
 export async function fetchGoals(): Promise<Goal[]>{
         const answer = await fetch('/goals')
@@ -37,6 +39,14 @@ export async function fetchGoalById(id: string): Promise<Goal> {
   return res.json()
 }
 
-export async function updateGoal(id: string) {
-    
+export async function updateGoal(data: Goal): Promise<Goal> {
+    const res = await fetch(`/goals/${data.id}`,{
+        method: 'PATCH',
+        headers: {"Content-Type": "application/json" },
+        body: JSON.stringify(data)
+
+    } )
+
+    if(!res.ok) throw new Error (`Error: ${res.status}`)
+    return res.json()
 }
