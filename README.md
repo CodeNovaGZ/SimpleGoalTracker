@@ -20,15 +20,13 @@ Frameworks: Tailwind CSS, React
 Dependencias: TanStackQuery
 
 ## Endpoints de la API
-| **Método** | **Endpoint**       | **Descripción**                                          |
+| **Método** | **Endpoint**        | **Descripción**                                          |
 | ---------- | ------------------ | -------------------------------------------------------- |
 | `GET`      | `/goals`           | Recupera todas tus metas.                                |
 | `GET`      | `/goals/:id`       | Consulta el detalle de una meta.                         |
 | `GET`      | `/goals/:id/tasks` | Obtiene todas las tareas de una meta específica.         |
 | `POST`     | `/goals/:id/tasks` | Crea una nueva tarea dentro de una meta.                 |
 | `PATCH`    | `/tasks/:taskId`   | Actualiza el estado (completado/pendiente) de una tarea. |
-
-
 
 ## Instalación
 
@@ -41,7 +39,7 @@ Dependencias: TanStackQuery
 1. Instala **Docker Desktop**: https://www.docker.com/products/docker-desktop/
 2. Durante la instalación, deja activado el backend **WSL 2** (recomendado).
 3. Si pide habilitar la **virtualización**, actívala en la BIOS (busca "Intel VT-x" o "AMD-V").
-4. **Abre Docker Desktop y espera a que el icono de la ballena esté estable** antes de ejecutar cualquier comando `npm run dev*` o `npm test`.
+4. **Abre Docker Desktop y espera a que el icono de la ballena esté estable** antes de ejecutar cualquier comando `npm run dev` o `npm test`.
 
 ### Pasos
 
@@ -56,7 +54,6 @@ Dependencias: TanStackQuery
 
 ¡Empieza a rastrear tus metas!
 
-
 ## Pruebas
 El proyecto usa Jest y Supertest para los tests de la API.
 
@@ -64,16 +61,18 @@ Al ejecuta la suite de tests se resetea y seeda automáticamente una BD de test 
 
 ```bash
 npm test
-```
 
-Los tests se localizan en la carpeta `tests/` y cubren los endpoints del controlador de metas (`GET /goals` y `GET /goals/:id`).
+Los tests se localizan en la carpeta tests/ y cubren los endpoints del controlador de metas (GET /goals y GET /goals/:id).
+Próximos pasos
 
+    [X] Implementar CRUD completo de metas.
 
+    [ ] Implementar CRUD completo de tareas
 
-## Próximos pasos
-- [X] Implementar CRUD completo de metas.
-- [ ] Implementar CRUD completo de tareas
-- [X] Añadir persistencia de datos (conectar a una base de datos dockerizada)
-- [x] Añadir test unitarios al controlador de metas.
-- [ ] Crear suit de test para el CRUD completo de metas.
-- [ ] Crear suit de test para el CRUD completo de tareas.
+    [X] Añadir persistencia de datos (conectar a una base de datos dockerizada)
+
+    [x] Añadir test unitarios al controlador de metas.
+
+    [ ] Crear suit de test para el CRUD completo de metas.
+
+    [ ] Crear suit de test para el CRUD completo de tareas.
