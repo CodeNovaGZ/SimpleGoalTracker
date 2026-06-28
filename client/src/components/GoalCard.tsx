@@ -1,19 +1,20 @@
 import { DesplegableDown, Trash} from "../assets/svgs"
-import type { Goal, Task } from "../types"
-import { useState } from "react"
+import type { Goal } from "../types"
+import { useState} from "react"
 import {motion, AnimatePresence} from 'framer-motion'
 import TaskList from "./TaskList"
 import { useDeleteGoal } from "../hooks/useGoals"
+import { useTasks } from "../hooks/useTasks"
 
 
 export function GoalCard({goal, onViewDetails}: {goal: Goal, onViewDetails: ()=> void}){
     const [isGoalExpanded, setIsGoalExpanded] = useState(false)
     const deleteGoalMutation = useDeleteGoal()
-    const [tasks, setTasks] = useState<Task[]>([
-  { id: "t1", linkedGoalId: goal.id, title: "Crear tipos básicos", startDate: "2026-06-02", isCompleted: true },
-  { id: "t2", linkedGoalId: goal.id, title: "Entender el repositorio", startDate: "2026-06-16", isCompleted: false },
-  { id: "t3", linkedGoalId: goal.id, title: "Hacer ejercicios", startDate: "2026-06-20", isCompleted: false }
-])
+
+   const { data: allTasks } = useTasks()
+   const tasks = (allTasks ?? []).filter(t => t.linkedGoalId === goal.id)
+  
+
     const completed = tasks.filter(t => t.isCompleted).length
     const total = tasks.length
     const percentage = total > 0 ? (completed / total) * 100 : 0
@@ -49,7 +50,7 @@ export function GoalCard({goal, onViewDetails}: {goal: Goal, onViewDetails: ()=>
                         transition={{ duration: 0.3 }}
                         className="overflow-hidden px-5 pb-0"
                     >
-                        <TaskList tasks={tasks} setTasks={setTasks} goalId={goal.id} />
+                        <TaskList tasks={tasks} goalId={goal.id} />
                     </motion.div>
                     )}
             </AnimatePresence>
