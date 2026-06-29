@@ -14,7 +14,8 @@ const GoalModal = ({onClose, onGoalCreated}:{onClose: () => void, onGoalCreated:
         startDate: '',
         endDate: ''
     })
-  const handleSubmit = async(e : React.SubmitEvent) =>{
+    
+  const handleSubmit = (e : React.SubmitEvent) =>{
     e.preventDefault()
     const hoy = new Date().toISOString().split("T")[0]
 

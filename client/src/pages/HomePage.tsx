@@ -5,20 +5,28 @@ import GoalModal from '../components/GoalModal'
 import {motion} from 'framer-motion'
 import { useCreateGoal, useGoals, useUpdateGoal} from '../hooks/useGoals'
 import GoalDetails from '../components/GoalDetails'
+import TaskModal from '../components/TaskModal'
+import TaskEditModal from '../components/TaskEditModal'
+import { useCreateTask, useUpdateTask } from '../hooks/useTasks'
+import { TaskModalProvider } from "../context/TaskModalProvider"
+import { useTaskModal } from "../hooks/useTaskModal"
+import type { Task } from '../types'
 
 
-function HomePage(){
-    // HomePage.tsx - temporal, solo para visualizar
+function HomePageContent() {
     const createGoalMutation = useCreateGoal()
     const updateGoalMutation = useUpdateGoal()
+
+    const createTaskMutation = useCreateTask()
+    const updateTaskMutation = useUpdateTask()
     const {data: goals, isLoading, isError} = useGoals()
+    const { taskGoalId, closeTaskModal, editingTask, closeEditTaskModal } = useTaskModal()
     
     const [selectedGoal, setSelectedGoal] = useState<string | null>(null)
     const [isFormOpen, setIsFormOpen] = useState(false)
     const handleForm = () =>{
         setIsFormOpen(true)
     }
-
 
     return (
         <div className="flex-1 pt-20 flex flex-col h-screen">
@@ -54,8 +62,27 @@ function HomePage(){
                     onGoalCreated={(goal) => updateGoalMutation.mutate(goal)}
                 />
             )}
+            {taskGoalId !== null && (
+                <TaskModal
+                    onClose={closeTaskModal}
+                    onTaskCreated={(task) => createTaskMutation.mutate({ goalId: taskGoalId, task })}
+                />
+            )}
+            {editingTask !== null && (
+                <TaskEditModal
+                    task={editingTask}
+                    onClose={closeEditTaskModal}
+                    onTaskUpdated={(task: Task) => updateTaskMutation.mutate({ taskId: task.id, data: task })}
+                />
+            )}
         </div>
     )
 }
 
-export default HomePage
+export default function HomePage() {
+    return (
+        <TaskModalProvider>
+            <HomePageContent />
+        </TaskModalProvider>
+    )
+}
