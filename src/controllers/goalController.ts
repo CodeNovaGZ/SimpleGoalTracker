@@ -76,7 +76,7 @@ export const deleteGoal = async (req: Request, res: Response) => {
     console.log("Alguien pidió borrar una meta");
     try {
         const deletedGoal = await goalRepository.deleteOne(req.params.id);
-        if (!deleteGoal) return res.status(404).json({ message: 'Meta no encontrada' });
+        if (!deletedGoal) return res.status(404).json({ message: 'Meta no encontrada' });
         return res.status(200).json(deletedGoal);
     } catch (error) {
         console.error('Error al borrar la meta', error);
